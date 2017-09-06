@@ -1,4 +1,4 @@
-create database InfoTech;
+ create database InfoTech;
 use InfoTech
 go
 
