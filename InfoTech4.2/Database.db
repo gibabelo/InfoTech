@@ -1,6 +1,4 @@
- create database InfoTech;
-use InfoTech
-go
+
 
 
 /*-----------------------------------------------------------*/
@@ -756,9 +754,10 @@ create table estoqueSaida(
 
 execute inserirSexo @descricao= 'masculino'
 execute inserirSetor @descricao= 'Presidente' ;
-execute inserirSetor @descricao= 'Projetos' ;
+execute inserirFuncao @descricao= 'Projetos' ;
 execute insertAtividade @descricao ='administracao';
 execute inserirGrauEscolar @descricao = 'Doutorado';
-execute insertUsuario @userLogin ='Giba', @senha ='123456',@nome = 'Gilberto', @sobrenome = 'Algusto', @rg ='49.999.888-5', @cpf = '499.461.848.36', @cep = '02754-040' ,@endereco = 'Rua Benigno ', @estado ='Sp',@bairro ='Jd Primavera',@numero = '233' , @cidade ='sp', @telefone = '(011)99999829', @celular = '(011)99999929', @vsalario ='29.500.00', @email = 'glbertoo@infotech.com.br', @graudeConclusao ='',@grauEscolar ='1',@dataNascimento ='10/06/1993' , @sexo ='1',@funcao ='1', @setor='1', @atividade='1' 
+execute insertUsuario @userLogin ='Giba', @senha ='123456',@nome = 'Gilberto', @sobrenome = 'Algusto', @rg ='49.999.888-5', @cpf = '499.461.848.36', @cep = '02754-040' ,@endereco = 'Rua Benigno ', @estado ='Sp',@bairro ='Jd Primavera',@numero = '233' , @cidade ='sp', @telefone = '(011)99999829', @celular = '(011)99999929', @vsalario ='29.500.00', @email = 'glbertoo@infotech.com.br', @graudeConclusao ='',@grauEscolar ='1',@dataNascimento ='10/06/1993' , @sexo ='1',@funcao ='1', @setor='1', @atividade='1' ;
 
 			
+			select * from usuario

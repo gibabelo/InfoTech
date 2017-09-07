@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package br.com.infotech.functions;
-
+import com.microsoft.sqlserver.jdbc.*;
 import br.com.infotech.connection.conn;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
