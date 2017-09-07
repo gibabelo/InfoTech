@@ -12,19 +12,24 @@ package br.com.infotech.functions;
 public class autenticadorAcesso {
     
     
-   private static boolean  autenticLogin(){
+   private  boolean  autenticLogin(int valor ){
    
-   
-   
-   
-   return false;
-   
+       int val = valor;
+
+       if(valor == 0){
+       
+       return true;
+       
+       }
+       else {
+        
+          return false;
+       
+       }      
    }
     
-    
-    
-    
-    
-    
+  public boolean autencuadorDeLogin(int valor){
+      return autenticLogin(valor);  
+  } 
     
 }
