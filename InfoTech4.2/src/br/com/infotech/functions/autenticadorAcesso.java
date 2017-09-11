@@ -38,8 +38,26 @@ public class autenticadorAcesso {
         
  
     
+  
     
+   private  boolean  autenticLogin(int valor ){
+   
+       int val = valor;
+
+       if(valor == 0){
+       
+       return true;
+       
+       }
+       else {
+        
+          return false;
+       
+       }      
+   }
     
-    
+  public boolean autencuadorDeLogin(int valor){
+      return autenticLogin(valor);  
+  } 
     
 }

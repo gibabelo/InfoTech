@@ -1,5 +1,10 @@
+<<<<<<< HEAD
 create database infotech
 use infotech
+=======
+us
+
+>>>>>>> b09e31e58f12b92336f06e925ea40335b9812119
 
 
 /*-----------------------------------------------------------*/
@@ -293,30 +298,33 @@ go
 
 create table nivelAcesso(
  
- idAcesso int IDENTITY(1,1) primary key, 
- acessCliente decimal(1,0),
- cadastrarCliente decimal(1,0),
- todosClientes decimal(1,0),
- clietenesContratos decimal(1,0),
- clientesInativos decimal(1,0),
- novoContrato decimal(1,0),
- contratosAtivos decimal(1,0),
- contratosConcluidos decimal(1,0),
-  contratosInativos decimal(1,0),
- contratosHaVencer decimal(1,0),
- todosContratos decimal(1,0),
- solicitacaoOrcamento decimal(1,0),
- servicoEmAndamento decimal(1,0),
- servicoConcluido decimal(1,0),
- servicoCancelado decimal(1,0),
- todosServicos decimal(1,0),
- adicionarFuncionario  decimal(1,0),
- todosFuncionarios decimal(1,0),
- funcionariosInativos decimal(1,0),
- autorizacaoDeAcesso decimal(1,0),
- adiministracao decimal(1,0),
- estoque decimal(1,0),
- usuario int references Usuario(idUsuario) unique    
+   acessCliente decimal(1,0),
+   cadastrarCliente decimal(1,0),
+   todosClientes decimal(1,0),
+   clientes decimal(1,0),
+   clietenesContratos decimal(1,0),
+   clientesInativos decimal(1,0),
+   Contrato decimal(1,0),
+   novoContrato decimal(1,0),
+   contratosAtivos decimal(1,0),
+   contratosConcluidos decimal(1,0),
+   contratosInativos decimal(1,0),
+   contratosHaVencer decimal(1,0),
+   todosContratos decimal(1,0),
+   Solicitacao decimal(1,0),
+   solicitacaoOrcamento decimal(1,0),
+   servicoEmAndamento decimal(1,0),
+   servicoConcluido decimal(1,0),
+   servicoCancelado decimal(1,0),
+   todosServicos decimal(1,0),
+   funcionario decimal(1,0),
+   adicionarFuncionario  decimal(1,0),
+   todosFuncionarios decimal(1,0),
+   funcionariosInativos decimal(1,0),
+   autorizacaoDeAcesso decimal(1,0),
+   adiministracao decimal(1,0),
+   estoque decimal(1,0)
+   usuario int references Usuario(idUsuario) unique    
  ) 
  go 
  
@@ -552,6 +560,7 @@ statusDescricao	 varchar(100)
 insert into statusContrato (idStatusContrato, statusDescricao) values(1,'Ativo');
 insert into statusContrato (idStatusContrato, statusDescricao) values(2,'Inativo Falta de Pagamento');
 insert into statusContrato (idStatusContrato, statusDescricao) values(3,'Concluido');
+<<<<<<< HEAD
 insert into statusContrato (idStatusContrato, statusDescricao) values(4,'Recontratação');
 insert into statusContrato (idStatusContrato, statusDescricao) values(5,'Inativo');
 insert into statusContrato (idStatusContrato, statusDescricao) values(6,'Contratação');
@@ -605,6 +614,61 @@ GO
 
 CREATE table StatusServicos(
 
+=======
+insert into statusContrato (idStatusContrato, statusDescricao) values(4,'RecontrataÃ§Ã£o');
+insert into statusContrato (idStatusContrato, statusDescricao) values(5,'Inativo');
+insert into statusContrato (idStatusContrato, statusDescricao) values(6,'ContrataÃ§Ã£o');
+go
+
+ /*-----------------------------------------------------------*/
+/*-----------------------------------------------------------*/
+create table Contratos(
+
+idContrato int IDENTITY(1,1) primary key,
+idCliente  int references clientes(idCliente),
+tipoContrato int references tipoContrato(idTipoContrato),
+valorMensalContrato numeric(10,2),
+valorAnualContrato  numeric(10,2),
+dataDeInicio		date,
+dataFinal           date,
+statusContrato numeric(1) references statusContrato(idStatusContrato)
+)
+go
+
+create procedure  insert_Contratos
+@idCliente int,
+@tipoContrato int ,
+@dataInicio date,
+@datafinal date,
+@statusContrato numeric(1)
+as
+begin
+insert into Contratos(idCliente,tipoContrato,dataDeInicio,dataFinal,	statusContrato)
+				values(@idCliente,@tipoContrato,@dataInicio,@datafinal,@statusContrato)
+end
+go
+
+create procedure  update_Contratos
+@tipoContrato int ,
+@datafinal date,
+@statusContrato numeric(1),
+@valorMensalContrato numeric(10,2),
+@valorAnualContratp  numeric(10,2),
+@idContrato int
+as
+begin
+update Contratos set tipoContrato=@tipoContrato, dataFinal = @datafinal , statusContrato=@statusContrato,valorAnualContrato =@valorAnualContratp , valorMensalContrato= @valorMensalContrato
+		where idContrato =@idContrato
+end 
+go
+
+/*-----------------------------------------------------------*/
+/*-----------------------------------------------------------*/
+GO
+
+CREATE table StatusServicos(
+
+>>>>>>> b09e31e58f12b92336f06e925ea40335b9812119
 idStatus numeric(1) PRIMARY KEY,
 descricao varchar(50)
 )

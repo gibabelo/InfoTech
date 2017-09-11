@@ -2,7 +2,10 @@ package br.com.infotech.forms;
 
 
 import br.com.infotech.forms.DataGrid;
+import br.com.infotech.forms.DataGrid;
 import br.com.infotech.forms.frmCadastraClientes;
+import br.com.infotech.forms.frmCadastraClientes;
+import br.com.infotech.forms.frmFuncionarioCadastro;
 import br.com.infotech.functions.acesso;
 import br.com.infotech.functions.autenticadorAcesso;
 import java.sql.ResultSet;
@@ -572,6 +575,7 @@ dispose();
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(inicioFr.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
