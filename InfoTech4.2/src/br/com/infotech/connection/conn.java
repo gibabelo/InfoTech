@@ -36,11 +36,11 @@ public class conn {
     
    private static String DRIVE = "com.microsoft.sqlserver.jdbc.SQLServerDriver";   
    private static String ip  ="127.0.0.1"    ;
-   private static String usuario="infotech" ;
+   private static String usuario="sa" ;
    private static String senha ="123456" ;
    private static String database ="InfoTech" ;
    private static String porta="1433" ; 
-   private static  String stringConnection= "jdbc:mssqlserver://"+ip+":"+porta+";datbasename= "+database+";" ;
+   private static  String stringConnection= "jdbc:sqlserver://"+ip+":"+porta+";" ;
      
      
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

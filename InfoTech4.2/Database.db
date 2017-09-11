@@ -296,26 +296,33 @@ create table nivelAcesso(
  acessCliente decimal(1,0),
  cadastrarCliente decimal(1,0),
  todosClientes decimal(1,0),
+ clientes decimal(1,0),
  clietenesContratos decimal(1,0),
  clientesInativos decimal(1,0),
+ Contrato decimal(1,0),
  novoContrato decimal(1,0),
  contratosAtivos decimal(1,0),
  contratosConcluidos decimal(1,0),
   contratosInativos decimal(1,0),
  contratosHaVencer decimal(1,0),
  todosContratos decimal(1,0),
+ Solicitacao decimal(1,0),
  solicitacaoOrcamento decimal(1,0),
  servicoEmAndamento decimal(1,0),
  servicoConcluido decimal(1,0),
  servicoCancelado decimal(1,0),
  todosServicos decimal(1,0),
+ funcionario decimal(1,0),
  adicionarFuncionario  decimal(1,0),
  todosFuncionarios decimal(1,0),
  funcionariosInativos decimal(1,0),
  autorizacaoDeAcesso decimal(1,0),
  adiministracao decimal(1,0),
  estoque decimal(1,0),
+ 
+
  usuario int references Usuario(idUsuario) unique    
+
  )
  go
  

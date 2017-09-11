@@ -4,6 +4,8 @@ package br.com.infotech.forms;
 
 import java.awt.event.KeyEvent;
 import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.TimerTask;
 import javax.swing.JOptionPane;
 
@@ -21,18 +23,35 @@ public class login extends javax.swing.JFrame {
     
     
     private  void login(){
-    
+        int autorizacao= 0;
         String usuario = txtUsuarioo.getText();
         String senha   = txtSenha.getText();
      boolean rt = br.com.infotech.functions.login.logar(usuario, senha);
-     
+    
      if(rt == true){
                 
-         
-         inicioFr novo = new inicioFr(usuario);
+         int id =br.com.infotech.functions.acesso.getId(usuario);
+                
+         try{
+         ResultSet rsAcces =   br.com.infotech.functions.acesso.acesso(id);
+         while ( rsAcces.next() )
+                          {
+                         autorizacao = rsAcces.getInt("autorizacaoDeAcesso");
+         }
+            
+         if(autorizacao == 1  ){
+         inicioFr novo = new inicioFr(id);
          
          novo.setVisible(true);
          dispose();    
+         }
+         else{
+         JOptionPane.showMessageDialog(null,"Houve um erro, você não tem autorização de acesso,\n contate o administrador para detalhes\n 12568"); 
+         }
+         }
+       catch(SQLException ex){
+              JOptionPane.showMessageDialog(null,"Ocorreu Um Erro 120241\n"+ex);
+            }
          }
      else{   
          

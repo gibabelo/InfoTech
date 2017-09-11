@@ -60,47 +60,62 @@
                 <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnCadastrarClientesMousePressed"/>
               </Events>
             </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="btnClienteInativos">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Clientes inativos"/>
+              </Properties>
+            </MenuItem>
           </SubComponents>
         </Menu>
-        <Menu class="javax.swing.JMenu" name="contratos">
+        <Menu class="javax.swing.JMenu" name="btnContratos">
           <Properties>
             <Property name="text" type="java.lang.String" value="Contratos"/>
           </Properties>
           <SubComponents>
-            <MenuItem class="javax.swing.JMenuItem" name="contratoAtivo">
+            <MenuItem class="javax.swing.JMenuItem" name="btnContratoAtivo">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Contrato Ativos"/>
               </Properties>
             </MenuItem>
             <MenuItem class="javax.swing.JPopupMenu$Separator" name="jSeparator18">
             </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="contratoInativo">
+            <MenuItem class="javax.swing.JMenuItem" name="btnContratoInativo">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Contrato Inativos"/>
               </Properties>
             </MenuItem>
             <MenuItem class="javax.swing.JPopupMenu$Separator" name="jSeparator19">
             </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="procimosVencimento">
+            <MenuItem class="javax.swing.JMenuItem" name="btnProximosVencimento">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Proximos Ao Vencimeto"/>
               </Properties>
             </MenuItem>
             <MenuItem class="javax.swing.JPopupMenu$Separator" name="jSeparator20">
             </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="novoContrato">
+            <MenuItem class="javax.swing.JMenuItem" name="btnNovoContrato">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Novo Contrato"/>
               </Properties>
             </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="btnContratoConcluidos">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Contratos Concluidos"/>
+              </Properties>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="btnTodosContratos">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Todos contratos"/>
+              </Properties>
+            </MenuItem>
           </SubComponents>
         </Menu>
-        <Menu class="javax.swing.JMenu" name="jMenu4">
+        <Menu class="javax.swing.JMenu" name="btnSolicitacaoOrcamento">
           <Properties>
             <Property name="text" type="java.lang.String" value="Solicita&#xe7;&#xf5;es"/>
           </Properties>
           <SubComponents>
-            <Menu class="javax.swing.JMenu" name="solicitacaoAberta">
+            <Menu class="javax.swing.JMenu" name="btnSolicitacaoAberta">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Solicita&#xe7;&#xe3;o Aberta"/>
               </Properties>
@@ -135,21 +150,21 @@
             </Menu>
             <MenuItem class="javax.swing.JPopupMenu$Separator" name="jSeparator7">
             </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="serviAndamento">
+            <MenuItem class="javax.swing.JMenuItem" name="btnServiAndamento">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Servi&#xe7;os Em Andamento"/>
               </Properties>
             </MenuItem>
             <MenuItem class="javax.swing.JPopupMenu$Separator" name="jSeparator8">
             </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="serviConcluidos">
+            <MenuItem class="javax.swing.JMenuItem" name="btnServiConcluidos">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Servi&#xe7;os Concluidos"/>
               </Properties>
             </MenuItem>
             <MenuItem class="javax.swing.JPopupMenu$Separator" name="jSeparator9">
             </MenuItem>
-            <Menu class="javax.swing.JMenu" name="cancelados">
+            <Menu class="javax.swing.JMenu" name="btnCancelados">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Cancelados"/>
               </Properties>
@@ -175,24 +190,29 @@
                 </MenuItem>
               </SubComponents>
             </Menu>
+            <MenuItem class="javax.swing.JMenuItem" name="btnTodosServi&#xe7;os">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Todos Servi&#xe7;os"/>
+              </Properties>
+            </MenuItem>
           </SubComponents>
         </Menu>
-        <Menu class="javax.swing.JMenu" name="funcionarios">
+        <Menu class="javax.swing.JMenu" name="btnfuncionarios">
           <Properties>
             <Property name="text" type="java.lang.String" value="Funcionarios"/>
           </Properties>
           <SubComponents>
-            <MenuItem class="javax.swing.JMenuItem" name="cadastrarFuncionarios">
+            <MenuItem class="javax.swing.JMenuItem" name="btnCadastrarFuncionarios">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Cadastrar Funcionarios"/>
               </Properties>
               <Events>
-                <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="cadastrarFuncionariosMousePressed"/>
+                <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnCadastrarFuncionariosMousePressed"/>
               </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JPopupMenu$Separator" name="jSeparator15">
             </MenuItem>
-            <Menu class="javax.swing.JMenu" name="checarFuncionarios">
+            <Menu class="javax.swing.JMenu" name="btnChecarFuncionarios">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Checar Funcionarios"/>
               </Properties>
@@ -204,14 +224,14 @@
                 </MenuItem>
                 <MenuItem class="javax.swing.JPopupMenu$Separator" name="jSeparator16">
                 </MenuItem>
-                <MenuItem class="javax.swing.JMenuItem" name="funcInativos">
+                <MenuItem class="javax.swing.JMenuItem" name="btnFuncInativos">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Funcionarios Inativos"/>
                   </Properties>
                 </MenuItem>
                 <MenuItem class="javax.swing.JPopupMenu$Separator" name="jSeparator17">
                 </MenuItem>
-                <MenuItem class="javax.swing.JMenuItem" name="todosFunc">
+                <MenuItem class="javax.swing.JMenuItem" name="btnTodosFunc">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Todos Funcionarios"/>
                   </Properties>
@@ -220,12 +240,12 @@
             </Menu>
           </SubComponents>
         </Menu>
-        <Menu class="javax.swing.JMenu" name="jMenu1">
+        <Menu class="javax.swing.JMenu" name="btnAdministracao">
           <Properties>
             <Property name="text" type="java.lang.String" value="Administra&#xe7;&#xe3;o"/>
           </Properties>
         </Menu>
-        <Menu class="javax.swing.JMenu" name="jMenu2">
+        <Menu class="javax.swing.JMenu" name="btnEstoque">
           <Properties>
             <Property name="text" type="java.lang.String" value="Estoque"/>
           </Properties>

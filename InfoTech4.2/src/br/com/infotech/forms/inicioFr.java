@@ -4,6 +4,7 @@ package br.com.infotech.forms;
 import br.com.infotech.forms.DataGrid;
 import br.com.infotech.forms.frmCadastraClientes;
 import br.com.infotech.functions.acesso;
+import br.com.infotech.functions.autenticadorAcesso;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
@@ -13,28 +14,168 @@ import javax.swing.JOptionPane;
 public class inicioFr extends javax.swing.JFrame {
 
     
-    private static String LogIn;
+    private static int LogIn;
    
- /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////   
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////   
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////   
    
     //inicializador simples sem parametros para a inicialização so itens de tela
     public inicioFr() {
-        initComponents();        
-        autenticar();
-       
+        initComponents();               
+        autenticador();
     }   
-    
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////   
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////    
-    //inicializador com parametro de login
-    public inicioFr(String login) {
-        initComponents();
-        LogIn = login;
-        autenticar();
-       
-    }
+  
+    public inicioFr(int valor) {
+        initComponents();           
+        LogIn = valor;
+        autenticador();
+    }       
 
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////   
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////   
+
+    private void autenticador(){
+    
+        int valor ;
+        
+        boolean parametro = false;
+        ResultSet rsValores = acesso.acesso(LogIn);
+        
+        try{
+            while(rsValores.next())
+            {
+      valor = 0;    
+      valor = rsValores.getInt("cadastrarCliente");
+      parametro=autenticadorAcesso.acesso(valor);
+      btnCadastrarClientes.setVisible(parametro);
+      
+      
+      valor = 0;
+      valor = rsValores.getInt("todosClientes");
+      btnTodosCLientes.setVisible(autenticadorAcesso.acesso(valor));
+      
+      valor = 0;
+      valor = rsValores.getInt("clietenesContratos");
+      btnClientesContratos.setVisible(autenticadorAcesso.acesso(valor));
+      
+      valor = 0;
+      valor = rsValores.getInt("clientesInativos");
+      btnClienteInativos.setVisible(autenticadorAcesso.acesso(valor));
+      
+      valor = 0;
+      valor = rsValores.getInt("novoContrato");
+      btnNovoContrato.setVisible(autenticadorAcesso.acesso(valor));
+      
+      valor = 0;
+      valor = rsValores.getInt("contratosAtivos");
+      btnContratoAtivo.setVisible(autenticadorAcesso.acesso(valor));
+      
+      valor = 0;
+      valor = rsValores.getInt("contratosConcluidos");
+      btnContratoConcluidos.setVisible(autenticadorAcesso.acesso(valor));
+    
+      valor = 0;
+      valor = rsValores.getInt("contratosInativos");
+      parametro = autenticadorAcesso.acesso(valor);
+      btnContratoInativo.setVisible(parametro);
+      
+      valor = 0 ;
+      valor = rsValores.getInt("contratosHaVencer");
+      parametro = autenticadorAcesso.acesso(valor);
+      btnProximosVencimento.setVisible(parametro);
+      
+      valor = 0;
+      valor = rsValores.getInt("todosContratos");
+      parametro = autenticadorAcesso.acesso(valor);
+      btnTodosContratos.setVisible(parametro);      
+      
+      valor = 0;
+      valor = rsValores.getInt("solicitacaoOrcamento");
+      parametro = autenticadorAcesso.acesso(valor);
+      btnSolicitacaoOrcamento.enable(parametro);
+      
+      valor = 0;
+      valor = rsValores.getInt("servicoEmAndamento");
+      parametro = autenticadorAcesso.acesso(valor);
+      btnServiAndamento.setVisible(parametro);
+      
+      valor = 0;
+      valor = rsValores.getInt("servicoConcluido");
+      parametro = autenticadorAcesso.acesso(valor);
+      btnServiConcluidos.setVisible(parametro);
+      
+      valor = 0;
+      valor = rsValores.getInt("servicoCancelado");
+      parametro = autenticadorAcesso.acesso(valor);
+      btnCancelados.setVisible(parametro);
+      
+      valor = 0;
+      valor = rsValores.getInt("todosServicos");
+      parametro = autenticadorAcesso.acesso(valor);
+      btnTodosServiços.setVisible(parametro);
+      
+      valor = 0;
+      valor = rsValores.getInt("adicionarFuncionario");
+      parametro = autenticadorAcesso.acesso(valor);
+      btnCadastrarFuncionarios.setVisible(parametro);
+      
+      valor = 0;
+      valor = rsValores.getInt("todosFuncionarios");
+      parametro = autenticadorAcesso.acesso(valor);
+      btnTodosFunc.setVisible(parametro);
+      
+      
+      valor = 0;
+      valor = rsValores.getInt("funcionariosInativos");
+      parametro = autenticadorAcesso.acesso(valor);
+      btnFuncInativos.setVisible(parametro);
+      
+      valor = 0;
+      valor = rsValores.getInt("autorizacaoDeAcesso");
+      
+      valor = 0;
+      valor = rsValores.getInt("adiministracao");
+      parametro = autenticadorAcesso.acesso(valor);
+      btnAdministracao.enable(parametro);
+      
+      valor = 0;
+      valor = rsValores.getInt("estoque");
+      parametro =  autenticadorAcesso.acesso(valor);
+      btnEstoque.enable(parametro);
+      
+      valor = 0 ;
+      valor = rsValores.getInt("clientes");
+      parametro = autenticadorAcesso.acesso(valor);
+      btnClientes.enable(parametro);
+      
+      valor = 0 ;
+      valor = rsValores.getInt("Contrato");
+      parametro = autenticadorAcesso.acesso(valor);
+      btnContratos.enable(parametro);
+      
+      valor = 0 ;
+      valor = rsValores.getInt("Solicitacao");
+      parametro = autenticadorAcesso.acesso(valor);
+      btnSolicitacaoOrcamento.enable(parametro); 
+
+      valor = 0 ;
+      valor = rsValores.getInt("funcionario");
+      parametro = autenticadorAcesso.acesso(valor);
+      btnfuncionarios.enable(parametro);
+        
+            }
+        }    
+        catch(SQLException ex)
+        {
+        JOptionPane.showMessageDialog(null, "Erro na conexão tente novamente 123447 \n"+ex);
+        
+        }
+    
+    
+    }
+    
+    
+    
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////   
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// 
 public void closeFrm(){
@@ -46,112 +187,6 @@ dispose();
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////   
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// 
-
-    
-    //autenticador de login e nivel de acesso
-    private  void autenticar(){
-    
-       boolean autenticador =acesso.configAcesso(LogIn);
-    
-       if(autenticador == false ){
-       JOptionPane.showMessageDialog(null,"Voce nao tem acesso de login contate seu administrador para mais informações \n");
-       closeFrm();
-       login novo = new login();
-       novo.setVisible(true);
-       
-       
-       }
-       else{
-       
-           int id = acesso.getId(LogIn);
-           
-           ResultSet valor = acesso.acesso(id);
-      try{  
-          
-       if(!valor.next()){
-       JOptionPane.showMessageDialog(null,"Voce nao tem acesso de login contate seu administrador para mais informações \n");
-       
-       closeFrm();
-       login novo = new login();
-       novo.setVisible(true);
-       
-       
-       }
-       else{
-       
-           
-            while(valor.next()){
-            
-                int acesso =  valor.getInt("acessCliente");
-            //////////////////////////////////////////////////////////////////////////////    
-            int cadastrarCliente =  valor.getInt("cadastrarCliente");
-            if(cadastrarCliente == 1){
-                btnCadastrarClientes.setEnabled(true);
-            }
-            else{
-                btnCadastrarClientes.setEnabled(false);
-            }
-            ////////////////////////////////////////////////////////////////////////////////
-                int todosClientes =  valor.getInt("todosClientes");
-                if(todosClientes == 1){
-                btnTodosCLientes.setEnabled(true);
-            }
-            else{
-                btnTodosCLientes.setEnabled(false);
-            }
-            ////////////////////////////////////////////////////////////////////////////////
-                
-                int clietenesContratos =  valor.getInt("clietenesContratos");
-                if(cadastrarCliente == 1){
-                btnClientesContratos.setEnabled(true);
-            }
-            else{
-                btnClientesContratos.setEnabled(false);
-            }
-            ////////////////////////////////////////////////////////////////////////////////
-                
-                int clientesInativos =  valor.getInt("clientesInativos");
-                int novoContratoo =  valor.getInt("novoContrato");
-                int contratosAtivos =  valor.getInt("contratosAtivos");
-                int contratosConcluidos =  valor.getInt("contratosConcluidos");
-                int contratosInativos =  valor.getInt("contratosInativos");
-                int contratosHaVencer =  valor.getInt("contratosHaVencer");
-                int todosContratos =  valor.getInt("todosContratos");
-                int solicitacaoOrcamento =  valor.getInt("solicitacaoOrcamento");
-                int servicoEmAndamento =  valor.getInt("servicoEmAndamento");
-                int servicoConcluido =  valor.getInt("servicoConcluido");
-                int servicoCancelado =  valor.getInt("servicoCancelado");
-                int acetodosServicossso =  valor.getInt("todosServicos");
-                int adicionarFuncionario =  valor.getInt("adicionarFuncionario");
-                int todosFuncionarios =  valor.getInt("todosFuncionarios");
-                int funcionariosInativos =  valor.getInt("funcionariosInativos");
-                int autorizacaoDeAcesso =  valor.getInt("autorizacaoDeAcesso");
-                int adiministracao =  valor.getInt("adiministracao");
-                int estoque =  valor.getInt("estoque");
-            }
-            
-
-            
-            
-           }
-         }
-           catch(SQLException erro){
-           JOptionPane.showMessageDialog(null,"VErro ao carregar diretrizes de acesso  \n"+ erro);
-           
-           }
-       
-       }
-    
-    
-    } 
-    
-        
- /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////   
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    
-    
-    
-    
     
 
     @SuppressWarnings("unchecked")
@@ -181,16 +216,19 @@ dispose();
         jSeparator22 = new javax.swing.JPopupMenu.Separator();
         btnClientesContratos = new javax.swing.JMenuItem();
         btnCadastrarClientes = new javax.swing.JMenuItem();
-        contratos = new javax.swing.JMenu();
-        contratoAtivo = new javax.swing.JMenuItem();
+        btnClienteInativos = new javax.swing.JMenuItem();
+        btnContratos = new javax.swing.JMenu();
+        btnContratoAtivo = new javax.swing.JMenuItem();
         jSeparator18 = new javax.swing.JPopupMenu.Separator();
-        contratoInativo = new javax.swing.JMenuItem();
+        btnContratoInativo = new javax.swing.JMenuItem();
         jSeparator19 = new javax.swing.JPopupMenu.Separator();
-        procimosVencimento = new javax.swing.JMenuItem();
+        btnProximosVencimento = new javax.swing.JMenuItem();
         jSeparator20 = new javax.swing.JPopupMenu.Separator();
-        novoContrato = new javax.swing.JMenuItem();
-        jMenu4 = new javax.swing.JMenu();
-        solicitacaoAberta = new javax.swing.JMenu();
+        btnNovoContrato = new javax.swing.JMenuItem();
+        btnContratoConcluidos = new javax.swing.JMenuItem();
+        btnTodosContratos = new javax.swing.JMenuItem();
+        btnSolicitacaoOrcamento = new javax.swing.JMenu();
+        btnSolicitacaoAberta = new javax.swing.JMenu();
         aguardandoResposta = new javax.swing.JMenuItem();
         jSeparator11 = new javax.swing.JPopupMenu.Separator();
         aguardandoAgendamento = new javax.swing.JMenuItem();
@@ -199,27 +237,28 @@ dispose();
         jSeparator12 = new javax.swing.JPopupMenu.Separator();
         aguardandoAprovacao = new javax.swing.JMenuItem();
         jSeparator7 = new javax.swing.JPopupMenu.Separator();
-        serviAndamento = new javax.swing.JMenuItem();
+        btnServiAndamento = new javax.swing.JMenuItem();
         jSeparator8 = new javax.swing.JPopupMenu.Separator();
-        serviConcluidos = new javax.swing.JMenuItem();
+        btnServiConcluidos = new javax.swing.JMenuItem();
         jSeparator9 = new javax.swing.JPopupMenu.Separator();
-        cancelados = new javax.swing.JMenu();
+        btnCancelados = new javax.swing.JMenu();
         canceladoPelaInfo = new javax.swing.JMenuItem();
         jSeparator13 = new javax.swing.JPopupMenu.Separator();
         canceladoPeloCliente = new javax.swing.JMenuItem();
         jSeparator14 = new javax.swing.JPopupMenu.Separator();
         todosCliente = new javax.swing.JMenuItem();
-        funcionarios = new javax.swing.JMenu();
-        cadastrarFuncionarios = new javax.swing.JMenuItem();
+        btnTodosServiços = new javax.swing.JMenuItem();
+        btnfuncionarios = new javax.swing.JMenu();
+        btnCadastrarFuncionarios = new javax.swing.JMenuItem();
         jSeparator15 = new javax.swing.JPopupMenu.Separator();
-        checarFuncionarios = new javax.swing.JMenu();
+        btnChecarFuncionarios = new javax.swing.JMenu();
         funcAtivos = new javax.swing.JMenuItem();
         jSeparator16 = new javax.swing.JPopupMenu.Separator();
-        funcInativos = new javax.swing.JMenuItem();
+        btnFuncInativos = new javax.swing.JMenuItem();
         jSeparator17 = new javax.swing.JPopupMenu.Separator();
-        todosFunc = new javax.swing.JMenuItem();
-        jMenu1 = new javax.swing.JMenu();
-        jMenu2 = new javax.swing.JMenu();
+        btnTodosFunc = new javax.swing.JMenuItem();
+        btnAdministracao = new javax.swing.JMenu();
+        btnEstoque = new javax.swing.JMenu();
         ajuda = new javax.swing.JMenu();
         Sobre = new javax.swing.JMenuItem();
         jSeparator1 = new javax.swing.JPopupMenu.Separator();
@@ -318,107 +357,119 @@ dispose();
         });
         btnClientes.add(btnCadastrarClientes);
 
+        btnClienteInativos.setText("Clientes inativos");
+        btnClientes.add(btnClienteInativos);
+
         jMenuBar1.add(btnClientes);
 
-        contratos.setText("Contratos");
+        btnContratos.setText("Contratos");
 
-        contratoAtivo.setText("Contrato Ativos");
-        contratos.add(contratoAtivo);
-        contratos.add(jSeparator18);
+        btnContratoAtivo.setText("Contrato Ativos");
+        btnContratos.add(btnContratoAtivo);
+        btnContratos.add(jSeparator18);
 
-        contratoInativo.setText("Contrato Inativos");
-        contratos.add(contratoInativo);
-        contratos.add(jSeparator19);
+        btnContratoInativo.setText("Contrato Inativos");
+        btnContratos.add(btnContratoInativo);
+        btnContratos.add(jSeparator19);
 
-        procimosVencimento.setText("Proximos Ao Vencimeto");
-        contratos.add(procimosVencimento);
-        contratos.add(jSeparator20);
+        btnProximosVencimento.setText("Proximos Ao Vencimeto");
+        btnContratos.add(btnProximosVencimento);
+        btnContratos.add(jSeparator20);
 
-        novoContrato.setText("Novo Contrato");
-        contratos.add(novoContrato);
+        btnNovoContrato.setText("Novo Contrato");
+        btnContratos.add(btnNovoContrato);
 
-        jMenuBar1.add(contratos);
+        btnContratoConcluidos.setText("Contratos Concluidos");
+        btnContratos.add(btnContratoConcluidos);
 
-        jMenu4.setText("Solicitações");
+        btnTodosContratos.setText("Todos contratos");
+        btnContratos.add(btnTodosContratos);
 
-        solicitacaoAberta.setText("Solicitação Aberta");
+        jMenuBar1.add(btnContratos);
+
+        btnSolicitacaoOrcamento.setText("Solicitações");
+
+        btnSolicitacaoAberta.setText("Solicitação Aberta");
 
         aguardandoResposta.setText("Aguardando Resposta");
-        solicitacaoAberta.add(aguardandoResposta);
-        solicitacaoAberta.add(jSeparator11);
+        btnSolicitacaoAberta.add(aguardandoResposta);
+        btnSolicitacaoAberta.add(jSeparator11);
 
         aguardandoAgendamento.setText("Aguardando Agendamento");
-        solicitacaoAberta.add(aguardandoAgendamento);
-        solicitacaoAberta.add(jSeparator10);
+        btnSolicitacaoAberta.add(aguardandoAgendamento);
+        btnSolicitacaoAberta.add(jSeparator10);
 
         aguardandoCotacaoo.setText("Aguardando Cotação");
-        solicitacaoAberta.add(aguardandoCotacaoo);
-        solicitacaoAberta.add(jSeparator12);
+        btnSolicitacaoAberta.add(aguardandoCotacaoo);
+        btnSolicitacaoAberta.add(jSeparator12);
 
         aguardandoAprovacao.setText("Aguardando Aprovação");
-        solicitacaoAberta.add(aguardandoAprovacao);
+        btnSolicitacaoAberta.add(aguardandoAprovacao);
 
-        jMenu4.add(solicitacaoAberta);
-        jMenu4.add(jSeparator7);
+        btnSolicitacaoOrcamento.add(btnSolicitacaoAberta);
+        btnSolicitacaoOrcamento.add(jSeparator7);
 
-        serviAndamento.setText("Serviços Em Andamento");
-        jMenu4.add(serviAndamento);
-        jMenu4.add(jSeparator8);
+        btnServiAndamento.setText("Serviços Em Andamento");
+        btnSolicitacaoOrcamento.add(btnServiAndamento);
+        btnSolicitacaoOrcamento.add(jSeparator8);
 
-        serviConcluidos.setText("Serviços Concluidos");
-        jMenu4.add(serviConcluidos);
-        jMenu4.add(jSeparator9);
+        btnServiConcluidos.setText("Serviços Concluidos");
+        btnSolicitacaoOrcamento.add(btnServiConcluidos);
+        btnSolicitacaoOrcamento.add(jSeparator9);
 
-        cancelados.setText("Cancelados");
+        btnCancelados.setText("Cancelados");
 
         canceladoPelaInfo.setText("Cancelado Pela Infotech");
-        cancelados.add(canceladoPelaInfo);
-        cancelados.add(jSeparator13);
+        btnCancelados.add(canceladoPelaInfo);
+        btnCancelados.add(jSeparator13);
 
         canceladoPeloCliente.setText("Cancelado Pelo Cliente");
-        cancelados.add(canceladoPeloCliente);
-        cancelados.add(jSeparator14);
+        btnCancelados.add(canceladoPeloCliente);
+        btnCancelados.add(jSeparator14);
 
         todosCliente.setText("Todos");
-        cancelados.add(todosCliente);
+        btnCancelados.add(todosCliente);
 
-        jMenu4.add(cancelados);
+        btnSolicitacaoOrcamento.add(btnCancelados);
 
-        jMenuBar1.add(jMenu4);
+        btnTodosServiços.setText("Todos Serviços");
+        btnSolicitacaoOrcamento.add(btnTodosServiços);
 
-        funcionarios.setText("Funcionarios");
+        jMenuBar1.add(btnSolicitacaoOrcamento);
 
-        cadastrarFuncionarios.setText("Cadastrar Funcionarios");
-        cadastrarFuncionarios.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnfuncionarios.setText("Funcionarios");
+
+        btnCadastrarFuncionarios.setText("Cadastrar Funcionarios");
+        btnCadastrarFuncionarios.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
-                cadastrarFuncionariosMousePressed(evt);
+                btnCadastrarFuncionariosMousePressed(evt);
             }
         });
-        funcionarios.add(cadastrarFuncionarios);
-        funcionarios.add(jSeparator15);
+        btnfuncionarios.add(btnCadastrarFuncionarios);
+        btnfuncionarios.add(jSeparator15);
 
-        checarFuncionarios.setText("Checar Funcionarios");
+        btnChecarFuncionarios.setText("Checar Funcionarios");
 
         funcAtivos.setText("Funcionarios Ativos");
-        checarFuncionarios.add(funcAtivos);
-        checarFuncionarios.add(jSeparator16);
+        btnChecarFuncionarios.add(funcAtivos);
+        btnChecarFuncionarios.add(jSeparator16);
 
-        funcInativos.setText("Funcionarios Inativos");
-        checarFuncionarios.add(funcInativos);
-        checarFuncionarios.add(jSeparator17);
+        btnFuncInativos.setText("Funcionarios Inativos");
+        btnChecarFuncionarios.add(btnFuncInativos);
+        btnChecarFuncionarios.add(jSeparator17);
 
-        todosFunc.setText("Todos Funcionarios");
-        checarFuncionarios.add(todosFunc);
+        btnTodosFunc.setText("Todos Funcionarios");
+        btnChecarFuncionarios.add(btnTodosFunc);
 
-        funcionarios.add(checarFuncionarios);
+        btnfuncionarios.add(btnChecarFuncionarios);
 
-        jMenuBar1.add(funcionarios);
+        jMenuBar1.add(btnfuncionarios);
 
-        jMenu1.setText("Administração");
-        jMenuBar1.add(jMenu1);
+        btnAdministracao.setText("Administração");
+        jMenuBar1.add(btnAdministracao);
 
-        jMenu2.setText("Estoque");
-        jMenuBar1.add(jMenu2);
+        btnEstoque.setText("Estoque");
+        jMenuBar1.add(btnEstoque);
 
         ajuda.setText("Ajuda");
 
@@ -452,7 +503,7 @@ dispose();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCadastrarClientesMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCadastrarClientesMousePressed
-           frmCadastraClientes frm = new frmCadastraClientes();
+       frmCadastraClientes frm = new frmCadastraClientes();
         
         jdPrincipal.add(frm);
         frm.setVisible(true);
@@ -468,12 +519,12 @@ dispose();
         dtGrid(2);
     }//GEN-LAST:event_btnClientesContratosActionPerformed
 
-    private void cadastrarFuncionariosMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cadastrarFuncionariosMousePressed
+    private void btnCadastrarFuncionariosMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCadastrarFuncionariosMousePressed
         // TODO add your handling code here:
         frmFuncionarioCadastro frm = new frmFuncionarioCadastro();
          jdPrincipal.add(frm);
         frm.setVisible(true);
-    }//GEN-LAST:event_cadastrarFuncionariosMousePressed
+    }//GEN-LAST:event_btnCadastrarFuncionariosMousePressed
    
     
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////   
@@ -542,29 +593,39 @@ dispose();
     private javax.swing.JMenuItem aguardandoResposta;
     private javax.swing.JMenu ajuda;
     private javax.swing.JMenu arquivo;
+    private javax.swing.JMenu btnAdministracao;
     private javax.swing.JMenuItem btnCadastrarClientes;
+    private javax.swing.JMenuItem btnCadastrarFuncionarios;
+    private javax.swing.JMenu btnCancelados;
+    private javax.swing.JMenu btnChecarFuncionarios;
+    private javax.swing.JMenuItem btnClienteInativos;
     private javax.swing.JMenu btnClientes;
     private javax.swing.JMenuItem btnClientesContratos;
+    private javax.swing.JMenuItem btnContratoAtivo;
+    private javax.swing.JMenuItem btnContratoConcluidos;
+    private javax.swing.JMenuItem btnContratoInativo;
+    private javax.swing.JMenu btnContratos;
+    private javax.swing.JMenu btnEstoque;
+    private javax.swing.JMenuItem btnFuncInativos;
+    private javax.swing.JMenuItem btnNovoContrato;
+    private javax.swing.JMenuItem btnProximosVencimento;
+    private javax.swing.JMenuItem btnServiAndamento;
+    private javax.swing.JMenuItem btnServiConcluidos;
+    private javax.swing.JMenu btnSolicitacaoAberta;
+    private javax.swing.JMenu btnSolicitacaoOrcamento;
     private javax.swing.JMenuItem btnTodosCLientes;
-    private javax.swing.JMenuItem cadastrarFuncionarios;
+    private javax.swing.JMenuItem btnTodosContratos;
+    private javax.swing.JMenuItem btnTodosFunc;
+    private javax.swing.JMenuItem btnTodosServiços;
+    private javax.swing.JMenu btnfuncionarios;
     private javax.swing.JMenuItem canceladoPelaInfo;
     private javax.swing.JMenuItem canceladoPeloCliente;
-    private javax.swing.JMenu cancelados;
-    private javax.swing.JMenu checarFuncionarios;
     private javax.swing.JMenuItem comando;
-    private javax.swing.JMenuItem contratoAtivo;
-    private javax.swing.JMenuItem contratoInativo;
-    private javax.swing.JMenu contratos;
     private javax.swing.JMenu editar;
     private javax.swing.JMenuItem funcAtivos;
-    private javax.swing.JMenuItem funcInativos;
-    private javax.swing.JMenu funcionarios;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
-    private javax.swing.JMenu jMenu4;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JPanel jPanel1;
@@ -594,13 +655,7 @@ dispose();
     private javax.swing.JTextField jTextField4;
     private javax.swing.JToolBar jToolBar1;
     private javax.swing.JDesktopPane jdPrincipal;
-    private javax.swing.JMenuItem novoContrato;
-    private javax.swing.JMenuItem procimosVencimento;
-    private javax.swing.JMenuItem serviAndamento;
-    private javax.swing.JMenuItem serviConcluidos;
-    private javax.swing.JMenu solicitacaoAberta;
     private javax.swing.JMenuItem todosCliente;
-    private javax.swing.JMenuItem todosFunc;
     // End of variables declaration//GEN-END:variables
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////   
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

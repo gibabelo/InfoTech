@@ -19,10 +19,10 @@ import javax.swing.JPanel;
 public class acesso {
     
     //seleciona todos valores de acesso
-   public static ResultSet acesso(int user){
+   public static  ResultSet acesso(int user){
                 ResultSet retorno;
 
-                 String query = "select * from  nivelAcesso where usuario ="+user+";";
+                 String query = "use infotech ; select * from  nivelAcesso where usuario ="+user+";";
           try{
                   Connection conn=    br.com.infotech.connection.conn.obterConexão();
 
@@ -40,17 +40,17 @@ public class acesso {
               
            return retorno = null;   
            
+
           }  
 }   
    
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////   
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////   
-   
-   
+      
    //retorna true ou false se o usuario existe ou nao, evita acesso indevidos
-   public static boolean configAcesso(String valor){
+   public static  boolean configAcesso(String valor){
    int id=0;
-    String query = "select idUsuario from  Usuario where userLogin ='"+valor+"';";
+    String query = "use infotech ;select idUsuario from  Usuario where userLogin ='"+valor+"';";
           try{
                   Connection conn=    br.com.infotech.connection.conn.obterConexão();
 
@@ -76,19 +76,15 @@ public class acesso {
               JOptionPane.showMessageDialog(null,"Ocorreu Um Erro 110012\n"+ex);
            return false;   
           }
-   
-   
-   
    }
    
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////   
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////   
-   
-   
+      
    //retorna id do usuario caos ele exista, para selecionar os acessos
    public static int getId(String valor){
    int id=0;
-    String query = "select idUsuario from  Usuario where userLogin ='"+valor+"';";
+    String query = "use infotech ; select idUsuario from  Usuario where userLogin ='"+valor+"';";
           try{
                   Connection conn=    br.com.infotech.connection.conn.obterConexão();
 
