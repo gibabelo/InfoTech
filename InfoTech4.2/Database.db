@@ -1,4 +1,5 @@
-
+create database infotech
+use infotech
 
 
 /*-----------------------------------------------------------*/
@@ -9,7 +10,7 @@ idAtividade int IDENTITY(1,1) primary key,
 descricao varchar(1000)
 )
 go
-create procedure insertAtividade
+create procedure insert_Atividade
 @descricao varchar(1000)
 as
 begin
@@ -47,7 +48,7 @@ descricao varchar(1000)
 )
 go
 
-CREATE PROCEDURE inserirSexo
+CREATE PROCEDURE insert_Sexo
 @descricao varchar(1000)
 AS
 begin
@@ -83,7 +84,7 @@ create table funcao(
 )
 go
 
-create PROCEDURE inserirFuncao
+create PROCEDURE insert_Funcao
 @descricao varchar(1000)
 AS
 begin
@@ -120,7 +121,7 @@ descricao varchar(1000)
 )
 go
 
-create PROCEDURE inserirSetor
+create PROCEDURE insert_Setor
 @descricao varchar(1000)
 AS
 begin
@@ -155,7 +156,7 @@ descricao varchar(1000)
 )
 go
 
-create PROCEDURE inserirGrauEscolar
+create PROCEDURE insert_GrauEscolar
 @descricao varchar(1000)
 AS
 begin
@@ -213,7 +214,7 @@ atividade int references atividade(idAtividade)
 )
 go
 
-create procedure insertUsuario
+create procedure insert_Usuario
 @userLogin varchar(1000),
 @senha    varchar(1000),
 @nome varchar(1000),
@@ -240,9 +241,9 @@ create procedure insertUsuario
 as
 begin
 insert into 
-Usuario(nome,sobrenome,rg,		cpf,cep,  endereco,estado,  bairro,numero,cidade,telefone,celular,salario,email,graudeConclusao,grauEscolar,dataNascimento,sexo,funcao,setor, atividade)
+Usuario(nome,	sobrenome,rg,  cpf, cep, endereco,estado,  bairro,numero,  cidade,telefone, celular,  salario,  email, graudeConclusao,grauEscolar,  dataNascimento,  sexo,funcao,  setor, atividade,userLogin,senha )
 values
-		(@nome,@sobrenome,@rg,@cpf,@cep,@endereco,@estado, @bairro,@numero,@cidade,@telefone,@celular,@vsalario,@email,@graudeConclusao,@grauEscolar,@dataNascimento,@sexo,@funcao,@setor, @atividade) 
+		(@nome,@sobrenome,@rg,@cpf,@cep,@endereco,@estado, @bairro,@numero,@cidade,@telefone,@celular,@vsalario,@email,@graudeConclusao,@grauEscolar,@dataNascimento,@sexo,@funcao,@setor, @atividade, @userLogin, @senha) 
 end
 go
 
@@ -296,38 +297,30 @@ create table nivelAcesso(
  acessCliente decimal(1,0),
  cadastrarCliente decimal(1,0),
  todosClientes decimal(1,0),
- clientes decimal(1,0),
  clietenesContratos decimal(1,0),
  clientesInativos decimal(1,0),
- Contrato decimal(1,0),
  novoContrato decimal(1,0),
  contratosAtivos decimal(1,0),
  contratosConcluidos decimal(1,0),
   contratosInativos decimal(1,0),
  contratosHaVencer decimal(1,0),
  todosContratos decimal(1,0),
- Solicitacao decimal(1,0),
  solicitacaoOrcamento decimal(1,0),
  servicoEmAndamento decimal(1,0),
  servicoConcluido decimal(1,0),
  servicoCancelado decimal(1,0),
  todosServicos decimal(1,0),
- funcionario decimal(1,0),
  adicionarFuncionario  decimal(1,0),
  todosFuncionarios decimal(1,0),
  funcionariosInativos decimal(1,0),
  autorizacaoDeAcesso decimal(1,0),
  adiministracao decimal(1,0),
  estoque decimal(1,0),
- 
-
  usuario int references Usuario(idUsuario) unique    
-
- )
- go
+ ) 
+ go 
  
- 
- create procedure insertNivelAcesso
+ create procedure insert_NivelAcesso
 
  @acessCliente decimal,
  @cadastrarCliente decimal,
@@ -356,7 +349,7 @@ create table nivelAcesso(
  begin
  insert into nivelAcesso (acessCliente,cadastrarCliente,todosClientes,clietenesContratos,clientesInativos, novoContrato, contratosAtivos,contratosConcluidos,         contratosInativos,contratosHaVencer,todosContratos, solicitacaoOrcamento,servicoEmAndamento,servicoConcluido,servicoCancelado,todosServicos,adicionarFuncionario,todosFuncionarios,funcionariosInativos,autorizacaoDeAcesso,adiministracao,estoque,usuario)values
 						(@acessCliente,@cadastrarCliente,@todosClientes,@clietenesContratos,@clientesInativos, @novoContrato,@contratosAtivos,@contratosConcluidos, @contratosInativos,@contratosHaVencer,@todosContratos, @solicitacaoOrcamento,@servicoEmAndamento,@servicoConcluido,@servicoCancelado,@todosServicos,@adicionarFuncionario,@todosFuncionarios,@funcionariosInativos,@autorizacaoDeAcesso,@adiministracao,@estoque,@usuario)
- end
+ end  
   go
  
  CREATE PROCEDURE updateNivelAcesso
@@ -387,8 +380,7 @@ create table nivelAcesso(
  begin
  update nivelAcesso set acessCliente = @acessCliente,cadastrarCliente= @cadastrarCliente,todosClientes = @todosClientes,clietenesContratos= @clietenesContratos,clientesInativos =@clientesInativos, novoContrato = @novoContrato, contratosAtivos= @contratosAtivos,contratosConcluidos = @contratosConcluidos, contratosInativos = @contratosInativos,contratosHaVencer=@contratosHaVencer,todosContratos =@todosContratos, solicitacaoOrcamento =@solicitacaoOrcamento,servicoEmAndamento=@servicoEmAndamento,servicoConcluido= @servicoConcluido,servicoCancelado =@servicoCancelado,todosServicos =@todosServicos,adicionarFuncionario =@adicionarFuncionario,todosFuncionarios = @todosFuncionarios,funcionariosInativos =@funcionariosInativos,autorizacaoDeAcesso =@autorizacaoDeAcesso,adiministracao =@adiministracao,estoque =@estoque where usuario = @idUsuario
  end 
- go
- 
+  go
  
  
  /*-----------------------------------------------------------*/
@@ -418,8 +410,7 @@ atividade int references atividade(idAtividade)
 
 go
 
-
-create procedure insertClientes
+create procedure insert_Clientes
 
 @cnpj		    varchar(1000),
 @IE			    varchar(1000),
@@ -487,7 +478,8 @@ tempo	   varchar(1000),
 tipoTempo   int references tipoContrato(idTipoContrato),
 )
 go
-create procedure insertTipoContrato
+
+create procedure insert_TipoContrato
 @idTipoContrato int,
 @descricao  varchar(1000),
 @tempo	   varchar(1000),
@@ -498,7 +490,7 @@ insert into tipoContrato (descricao, tempo, tipoTempo) values(@descricao,@tempo,
 end
 go
 
-create procedure updateTipoContrato
+create procedure update_TipoContrato
 @idTipoContrato int,
 @descricao  varchar(1000),
 @tempo	   varchar(1000),
@@ -509,8 +501,7 @@ update tipoContrato set descricao = @descricao, tempo = @tempo, tipoTempo = @tip
 end
 go
 
-
-create procedure deleteTipoContrato
+create procedure delete_TipoContrato
 @tipoContrato int
 as
 begin
@@ -525,7 +516,8 @@ idTipoServico int IDENTITY(1,1)primary key,
 descricao varchar(1000)
 )
 go
-create procedure insertTipoServico
+
+create procedure insert_TipoServico
 @descricao varchar(1000)
 as
 begin
@@ -533,9 +525,7 @@ insert into tipoServico (descricao)values (@descricao)
 end
 go
 
-
-
-create procedure updateProcedure
+create procedure update_TipoServico
 @descricao varchar(1000),
 @id  int
 as
@@ -544,8 +534,7 @@ update tipoServico set descricao =@descricao where idTipoServico = @id
 end
 go
 
-
-create procedure deleteTipoServico
+create procedure delete_TipoServico
 @id int
 as
 begin
@@ -556,18 +545,90 @@ go
 
  /*-----------------------------------------------------------*/
 /*-----------------------------------------------------------*/
+create table statusContrato(
+idStatusContrato numeric(1) primary key,
+statusDescricao	 varchar(100)
+)
+insert into statusContrato (idStatusContrato, statusDescricao) values(1,'Ativo');
+insert into statusContrato (idStatusContrato, statusDescricao) values(2,'Inativo Falta de Pagamento');
+insert into statusContrato (idStatusContrato, statusDescricao) values(3,'Concluido');
+insert into statusContrato (idStatusContrato, statusDescricao) values(4,'Recontratação');
+insert into statusContrato (idStatusContrato, statusDescricao) values(5,'Inativo');
+insert into statusContrato (idStatusContrato, statusDescricao) values(6,'Contratação');
+go
 
+ /*-----------------------------------------------------------*/
+/*-----------------------------------------------------------*/
+create table Contratos(
+
+idContrato int IDENTITY(1,1) primary key,
+idCliente  int references clientes(idCliente),
+tipoContrato int references tipoContrato(idTipoContrato),
+valorMensalContrato numeric(10,2),
+valorAnualContrato  numeric(10,2),
+dataDeInicio		date,
+dataFinal           date,
+statusContrato numeric(1) references statusContrato(idStatusContrato)
+)
+go
+
+create procedure  insert_Contratos
+@idCliente int,
+@tipoContrato int ,
+@dataInicio date,
+@datafinal date,
+@statusContrato numeric(1)
+as
+begin
+insert into Contratos(idCliente,tipoContrato,dataDeInicio,dataFinal,	statusContrato)
+				values(@idCliente,@tipoContrato,@dataInicio,@datafinal,@statusContrato)
+end
+go
+
+create procedure  update_Contratos
+@tipoContrato int ,
+@datafinal date,
+@statusContrato numeric(1),
+@valorMensalContrato numeric(10,2),
+@valorAnualContratp  numeric(10,2),
+@idContrato int
+as
+begin
+update Contratos set tipoContrato=@tipoContrato, dataFinal = @datafinal , statusContrato=@statusContrato,valorAnualContrato =@valorAnualContratp , valorMensalContrato= @valorMensalContrato
+		where idContrato =@idContrato
+end 
+go
+
+/*-----------------------------------------------------------*/
+/*-----------------------------------------------------------*/
+GO
+
+CREATE table StatusServicos(
+
+idStatus numeric(1) PRIMARY KEY,
+descricao varchar(50)
+)
+insert into StatusServicos (idStatus, descricao) values(1,'Ativo');
+insert into StatusServicos (idStatus, descricao) values(2,'Inativo');
+
+/*-----------------------------------------------------------*/
+/*-----------------------------------------------------------*/
+
+go
 
  create table servicos(
  idServicos int IDENTITY(1,1) primary key,
+ idContrato int references Contratos(idContrato),
  descricao  varchar(1000),
  resumo		varchar(1000),
  nomeServico varchar(1000),
+ valorServico numeric(10,2),
  tipoServico int references tipoServico(idTipoServico)
  
  )
- go
- create procedure intsertServicos
+go
+
+ create procedure insert_Servicos
 
  @descricao  varchar(1000),
  @resumo		varchar(1000),
@@ -580,7 +641,7 @@ go
 end
 go
 
-create procedure updateServicos
+create procedure update_Servicos
 @id   int,
  @descricao  varchar(1000),
  @resumo		varchar(1000),
@@ -592,7 +653,7 @@ update servicos set descricao = @descricao,resumo = @resumo,nomeServico = @nomeS
 end
 go
 
-create procedure deleteServicos
+create procedure delete_Servicos
 @id int
 as
 begin
@@ -603,23 +664,6 @@ go
 
  /*-----------------------------------------------------------*/
 /*-----------------------------------------------------------*/
-
-create table Contratos(
-
-idContrato int IDENTITY(1,1) primary key,
-idCliente  int references clientes(idCliente),
-tipoContrato int references tipoContrato(idTipoContrato),
-tipoServico  int references tipoServico(idTipoServico),
-valorMensalContrato varchar(1000),
-valorAnualContrato  varchar(1000),
-dataDeInicio		date,
-dataFinal           date,
-  
-
-)
-/*-----------------------------------------------------------*/
-/*-----------------------------------------------------------*/
-
 create table statusOrcamento(
 idStatus int IDENTITY(1,1) primary key,
 descricao varchar(1000) 
@@ -684,12 +728,81 @@ valorNota  numeric(10,2)not null,
 fornecedor int references fornecedores(idFornecedores),
 
 )
+go
+
+create procedure insert_NotaFiscal
+@numeroNota numeric(30),
+@valorNota	numeric(10,2),
+@forncedor	int
+as
+begin
+insert notasFiscais(numeroNota, valorNota, fornecedor)
+			values (@numeroNota, @valorNota,@forncedor)
+end
+go
+
+create procedure update_NotaFiscal
+@idNota int,
+@numeroNota numeric(30),
+@valorNota	numeric(10,2),
+@forncedor	int
+as
+begin
+
+update notasFiscais set numeroNota = @numeroNota , valorNota =@valorNota ,fornecedor = @forncedor where idNota = @idNota
+end
+go
+
+create procedure delete_NotaFiscal
+@idNota int
+as
+begin
+delete notasFiscais where idNota =@idNota
+end
+go
+
+
+CREATE VIEW vwNFe
+AS 
+SELECT * FROM notasFiscais
+
+go
+
+
  /*-----------------------------------------------------------*/
 /*-----------------------------------------------------------*/
 create table categoria(
-idCategoria int IDENTITY(1,1) primary key,
+id_Categoria int IDENTITY(1,1) primary key,
 descricao varchar(1000)
 )
+go
+
+create procedure insert_categoria
+@descricao varchar(1000)
+as
+begin
+insert into categoria (descricao) values (@descricao)
+end
+ go
+
+ create procedure delete_categoria
+ @id int
+ as
+ begin
+ delete categoria where id_categoria = @id
+ end
+ go
+
+ create procedure update_categoria
+ @id int,
+ @descricao varchar(1000)
+ as
+ begin
+ update categoria set descricao = @descricao  where id_categoria = @id
+ end
+ go
+
+
 
  /*-----------------------------------------------------------*/
 /*-----------------------------------------------------------*/
@@ -759,12 +872,12 @@ create table estoqueSaida(
 
 )
 
-execute inserirSexo @descricao= 'masculino'
-execute inserirSetor @descricao= 'Presidente' ;
-execute inserirFuncao @descricao= 'Projetos' ;
-execute insertAtividade @descricao ='administracao';
-execute inserirGrauEscolar @descricao = 'Doutorado';
-execute insertUsuario @userLogin ='Giba', @senha ='123456',@nome = 'Gilberto', @sobrenome = 'Algusto', @rg ='49.999.888-5', @cpf = '499.461.848.36', @cep = '02754-040' ,@endereco = 'Rua Benigno ', @estado ='Sp',@bairro ='Jd Primavera',@numero = '233' , @cidade ='sp', @telefone = '(011)99999829', @celular = '(011)99999929', @vsalario ='29.500.00', @email = 'glbertoo@infotech.com.br', @graudeConclusao ='',@grauEscolar ='1',@dataNascimento ='10/06/1993' , @sexo ='1',@funcao ='1', @setor='1', @atividade='1' ;
+execute insert_Sexo @descricao= 'masculino'
+execute insert_Setor @descricao= 'Presidente' ;
+execute insert_Funcao @descricao= 'Projetos' ;
+execute insert_Atividade @descricao ='administracao';
+execute insert_GrauEscolar @descricao = 'Doutorado';
+execute insert_Usuario @userLogin ='Giba', @senha ='123456',@nome = 'Gilberto', @sobrenome = 'Algusto', @rg ='49.999.888-5', @cpf = '499.461.848.36', @cep = '02754-040' ,@endereco = 'Rua Benigno ', @estado ='Sp',@bairro ='Jd Primavera',@numero = '233' , @cidade ='sp', @telefone = '(011)99999829', @celular = '(011)99999929', @vsalario ='29.500.00', @email = 'glbertoo@infotech.com.br', @graudeConclusao ='',@grauEscolar ='1',@dataNascimento ='10/06/1993' , @sexo ='1',@funcao ='1', @setor='1', @atividade='1' ;
 
 			
 			select * from usuario
