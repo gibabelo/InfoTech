@@ -76,6 +76,12 @@ public class DataGrid extends javax.swing.JInternalFrame {
             }
         ));
         jScrollPane1.setViewportView(dtTable);
+        if (dtTable.getColumnModel().getColumnCount() > 0) {
+            dtTable.getColumnModel().getColumn(0).setHeaderValue("Title 1");
+            dtTable.getColumnModel().getColumn(1).setHeaderValue("Title 2");
+            dtTable.getColumnModel().getColumn(2).setHeaderValue("Title 3");
+            dtTable.getColumnModel().getColumn(3).setHeaderValue("Title 4");
+        }
 
         jToolBar1.setBackground(new java.awt.Color(205, 209, 255));
         jToolBar1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
