@@ -1,12 +1,23 @@
-<<<<<<< HEAD
-create database infotech
+
+BEGIN Try
+if not exists(select * from sys.databases where name = 'Infotech')
+begin
+    create database Infotech;
+end
+end Try
+begin catch 
+	select 
+		 ERROR_NUMBER() AS ErrorNumber  
+        ,ERROR_SEVERITY() AS ErrorSeverity  
+        ,ERROR_STATE() AS ErrorState  
+        ,ERROR_PROCEDURE() AS ErrorProcedure  
+        ,ERROR_LINE() AS ErrorLine  
+        ,ERROR_MESSAGE() AS ErrorMessage
+end catch
+go
+
 use infotech
-=======
-us
-
->>>>>>> b09e31e58f12b92336f06e925ea40335b9812119
-
-
+go
 /*-----------------------------------------------------------*/
 /*-----------------------------------------------------------*/
 create table atividade(
@@ -23,7 +34,7 @@ insert into atividade(descricao) values(@descricao)
 end
 go
 
-create procedure updateAtividade
+create procedure update_Atividade
 @descricao varchar(1000),
 @id int
 as
@@ -32,7 +43,7 @@ update atividade set descricao = @descricao where idAtividade = @id
 end
 go
 
-create procedure deleteAtividade
+create procedure delete_Atividade
 @id int
 as
 begin
@@ -52,40 +63,14 @@ descricao varchar(1000)
 
 )
 go
-
-CREATE PROCEDURE insert_Sexo
-@descricao varchar(1000)
-AS
-begin
-insert into sexo  (descricao) values (@descricao)
-end
-go
-
-CREATE PROCEDURE atualizarSexo
-@id int,
-@descricao varchar(1000)
-AS
-BEGIN
-update sexo set descricao=@descricao where idSexo =@id
-end
-go
-
-CREATE PROCEDURE deletarSexo
-@id int
-AS
-begin
-delete from sexo where idSexo =@id
-end
-go
-
-
+insert into sexo  (descricao) values ('Masculino');
+insert into sexo  (descricao) values ('Feminino');
+insert into sexo  (descricao) values ('Outros');
 /*-----------------------------------------------------------*/
 /*-----------------------------------------------------------*/            
 create table funcao(
  idFuncao int IDENTITY(1,1) primary key,
-
  descricao varchar(1000)
-
 )
 go
 
@@ -97,7 +82,7 @@ insert into funcao (descricao) values (@descricao)
 end
 go
 
-create procedure atualizarFuncao
+create procedure update_Funcao
 @descricao varchar(1000),
 @id int
 AS
@@ -106,7 +91,7 @@ update funcao set descricao = @descricao where idFuncao = @id
 end
 go
 
-create procedure deletarFuncao
+create procedure delete_Funcao
 @id int
 as
 begin
@@ -134,7 +119,7 @@ insert into setor(descricao) values (@descricao)
 end
 go
 
-create procedure atualizarSetor
+create procedure update_Setor
 @descricao varchar(1000),
 @id int
 AS
@@ -143,7 +128,7 @@ update setor set descricao = @descricao where idSetor = @id
 end
 go
 
-create procedure deletarSetor
+create procedure delete_Setor
 @id int
 as
 begin
@@ -169,7 +154,7 @@ insert into graudeescolar(descricao) values (@descricao)
 end
 go
 
-create procedure atualizarGrauEscolar
+create procedure update_GrauEscolar
 @descricao varchar(1000),
 @id int
 AS
@@ -178,7 +163,7 @@ update graudeescolar set descricao = @descricao where idGrau = @id
 end
 go
 
-create procedure deletarGrau
+create procedure delete_Grau
 @id int
 as
 begin
@@ -252,7 +237,7 @@ values
 end
 go
 
-create procedure updateUsuario
+create procedure update_Usuario
 @id int,
 @senha    varchar(1000),
 @nome varchar(1000),
@@ -282,7 +267,7 @@ update Usuario set nome = @nome,sobrenome = @sobrenome,rg= @rg,cpf =@cpf,cep =@c
 end
 go
 
-create procedure deleteUsuario
+create procedure delete_Usuario
 @id int
 as
 begin
@@ -323,7 +308,7 @@ create table nivelAcesso(
    funcionariosInativos decimal(1,0),
    autorizacaoDeAcesso decimal(1,0),
    adiministracao decimal(1,0),
-   estoque decimal(1,0)
+   estoque decimal(1,0),
    usuario int references Usuario(idUsuario) unique    
  ) 
  go 
@@ -360,7 +345,7 @@ create table nivelAcesso(
  end  
   go
  
- CREATE PROCEDURE updateNivelAcesso
+ CREATE PROCEDURE update_NivelAcesso
  @idUsuario int,
  @acessCliente decimal,
  @cadastrarCliente decimal,
@@ -443,7 +428,7 @@ INSERT INTO clientes (cnpj,IE,razaoSocial,nomeFantasia, representante,documentoR
 END
 go
 
-create procedure updateClientes
+create procedure update_Clientes
 @idCliente int,
 @cnpj		    varchar(1000),
 @IE			    varchar(1000),
@@ -466,7 +451,7 @@ update clientes set cnpj = @cnpj,IE =@IE,razaoSocial = @razaoSocial,nomeFantasia
 end
 go
 
-create procedure deleteClientes
+create procedure delete_Clientes
 @idCliente int
 as
 begin
@@ -560,61 +545,6 @@ statusDescricao	 varchar(100)
 insert into statusContrato (idStatusContrato, statusDescricao) values(1,'Ativo');
 insert into statusContrato (idStatusContrato, statusDescricao) values(2,'Inativo Falta de Pagamento');
 insert into statusContrato (idStatusContrato, statusDescricao) values(3,'Concluido');
-<<<<<<< HEAD
-insert into statusContrato (idStatusContrato, statusDescricao) values(4,'Recontrata��o');
-insert into statusContrato (idStatusContrato, statusDescricao) values(5,'Inativo');
-insert into statusContrato (idStatusContrato, statusDescricao) values(6,'Contrata��o');
-go
-
- /*-----------------------------------------------------------*/
-/*-----------------------------------------------------------*/
-create table Contratos(
-
-idContrato int IDENTITY(1,1) primary key,
-idCliente  int references clientes(idCliente),
-tipoContrato int references tipoContrato(idTipoContrato),
-valorMensalContrato numeric(10,2),
-valorAnualContrato  numeric(10,2),
-dataDeInicio		date,
-dataFinal           date,
-statusContrato numeric(1) references statusContrato(idStatusContrato)
-)
-go
-
-create procedure  insert_Contratos
-@idCliente int,
-@tipoContrato int ,
-@dataInicio date,
-@datafinal date,
-@statusContrato numeric(1)
-as
-begin
-insert into Contratos(idCliente,tipoContrato,dataDeInicio,dataFinal,	statusContrato)
-				values(@idCliente,@tipoContrato,@dataInicio,@datafinal,@statusContrato)
-end
-go
-
-create procedure  update_Contratos
-@tipoContrato int ,
-@datafinal date,
-@statusContrato numeric(1),
-@valorMensalContrato numeric(10,2),
-@valorAnualContratp  numeric(10,2),
-@idContrato int
-as
-begin
-update Contratos set tipoContrato=@tipoContrato, dataFinal = @datafinal , statusContrato=@statusContrato,valorAnualContrato =@valorAnualContratp , valorMensalContrato= @valorMensalContrato
-		where idContrato =@idContrato
-end 
-go
-
-/*-----------------------------------------------------------*/
-/*-----------------------------------------------------------*/
-GO
-
-CREATE table StatusServicos(
-
-=======
 insert into statusContrato (idStatusContrato, statusDescricao) values(4,'Recontratação');
 insert into statusContrato (idStatusContrato, statusDescricao) values(5,'Inativo');
 insert into statusContrato (idStatusContrato, statusDescricao) values(6,'Contratação');
@@ -667,13 +597,64 @@ go
 GO
 
 CREATE table StatusServicos(
-
->>>>>>> b09e31e58f12b92336f06e925ea40335b9812119
-idStatus numeric(1) PRIMARY KEY,
-descricao varchar(50)
+idStatusContrato numeric(1) primary key,
+statusDescricao varchar(100)
 )
-insert into StatusServicos (idStatus, descricao) values(1,'Ativo');
-insert into StatusServicos (idStatus, descricao) values(2,'Inativo');
+
+insert into statusContrato (idStatusContrato, statusDescricao) values(1,'Ativo');
+insert into statusContrato (idStatusContrato, statusDescricao) values(2,'Cancelado');
+insert into statusContrato (idStatusContrato, statusDescricao) values(3,'Vencido');
+insert into statusContrato (idStatusContrato, statusDescricao) values(4,'Recontrataçao');
+insert into statusContrato (idStatusContrato, statusDescricao) values(5,'Inativo');
+insert into statusContrato (idStatusContrato, statusDescricao) values(6,'Contratação');
+insert into statusContrato (idStatusContrato, statusDescricao) values(7,'Em Serviço');
+insert into statusContrato (idStatusContrato, statusDescricao) values(8,'Concluido');
+go
+ /*-----------------------------------------------------------*/
+/*-----------------------------------------------------------*/
+create table Contratos(
+
+idContrato int IDENTITY(1,1) primary key,
+idCliente  int references clientes(idCliente),
+tipoContrato int references tipoContrato(idTipoContrato),
+valorMensalContrato numeric(10,2),
+valorAnualContrato  numeric(10,2),
+dataDeInicio		date,
+dataFinal           date,
+statusContrato numeric(1) references statusContrato(idStatusContrato)
+)
+go
+
+create procedure  insert_Contratos
+@idCliente int,
+@tipoContrato int ,
+@dataInicio date,
+@datafinal date,
+@statusContrato numeric(1)
+as
+begin
+insert into Contratos(idCliente,tipoContrato,dataDeInicio,dataFinal,	statusContrato)
+				values(@idCliente,@tipoContrato,@dataInicio,@datafinal,@statusContrato)
+end
+go
+
+create procedure  update_Contratos
+@tipoContrato int ,
+@datafinal date,
+@statusContrato numeric(1),
+@valorMensalContrato numeric(10,2),
+@valorAnualContratp  numeric(10,2),
+@idContrato int
+as
+begin
+update Contratos set tipoContrato=@tipoContrato, dataFinal = @datafinal , statusContrato=@statusContrato,valorAnualContrato =@valorAnualContratp , valorMensalContrato= @valorMensalContrato
+		where idContrato =@idContrato
+end 
+go
+
+/*-----------------------------------------------------------*/
+/*-----------------------------------------------------------*/
+
 
 /*-----------------------------------------------------------*/
 /*-----------------------------------------------------------*/
