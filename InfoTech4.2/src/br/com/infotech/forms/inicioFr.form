@@ -249,6 +249,9 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Estoque"/>
           </Properties>
+          <Events>
+            <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnEstoqueMousePressed"/>
+          </Events>
         </Menu>
         <Menu class="javax.swing.JMenu" name="ajuda">
           <Properties>

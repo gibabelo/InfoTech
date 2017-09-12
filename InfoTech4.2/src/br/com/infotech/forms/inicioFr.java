@@ -1,6 +1,7 @@
 package br.com.infotech.forms;
 
 
+import br.com.infotech.estoque.estoquePrincipal;
 import br.com.infotech.forms.DataGrid;
 import br.com.infotech.forms.DataGrid;
 import br.com.infotech.forms.frmCadastraClientes;
@@ -472,6 +473,11 @@ dispose();
         jMenuBar1.add(btnAdministracao);
 
         btnEstoque.setText("Estoque");
+        btnEstoque.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                btnEstoqueMousePressed(evt);
+            }
+        });
         jMenuBar1.add(btnEstoque);
 
         ajuda.setText("Ajuda");
@@ -528,6 +534,15 @@ dispose();
          jdPrincipal.add(frm);
         frm.setVisible(true);
     }//GEN-LAST:event_btnCadastrarFuncionariosMousePressed
+
+    private void btnEstoqueMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEstoqueMousePressed
+       
+        estoquePrincipal frm = new estoquePrincipal();
+        
+        jdPrincipal.add(frm);
+        frm.setVisible(true);
+        
+    }//GEN-LAST:event_btnEstoqueMousePressed
    
     
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////   
