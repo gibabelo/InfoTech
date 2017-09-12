@@ -807,11 +807,7 @@ end
 go
 
 
-CREATE VIEW vwNFe
-AS 
-SELECT * FROM notasFiscais
 
-go
 
 
  /*-----------------------------------------------------------*/
@@ -851,13 +847,15 @@ end
 
  /*-----------------------------------------------------------*/
 /*-----------------------------------------------------------*/
-create table marcas(
+create table marcas (
 idMarca int IDENTITY(1,1) primary key,
-categoria int references  categoria(idCategoria),
+descricao_marca varchar(120) UNIQUE,
+categoria int references  categoria(id_Categoria),
 )
 
  /*-----------------------------------------------------------*/
 /*-----------------------------------------------------------*/
+
 create table itens(
 idItens int IDENTITY(1,1) primary key,
 descricao varchar(1000),
@@ -895,11 +893,14 @@ descricao varchar(1000)
 /*-----------------------------------------------------------*/
 
 create table estoqueEntrada(
-idEstoqueEntrada int IDENTITY(1,1)primary key,
-item int references itens(idItens),
-notasFiscal int references notasFiscais(idNota),
-quantidade numeric(6,1) not null,
+ idEstoqueEntrada int IDENTITY(1,1)primary key,
+ item int references itens(idItens),
+ notasFiscal int references notasFiscais(idNota),
+ quantidade numeric(6,1) not null,
  statusEstoque int references statusEstoque(idStatus),
+ dateEntrada date,
+ usuario int references Usuario(idUsuario),
+ valor_compra numeric(10,2),
 
 )
  /*-----------------------------------------------------------*/
@@ -914,7 +915,7 @@ create table estoqueConferencia(
  sobra numeric(6,1),
  falta numeric(6,1),
  statusEstoque int references statusEstoque(idStatus),
- item int references itens(idItens),
+
 )
  /*-----------------------------------------------------------*/
 /*-----------------------------------------------------------*/
@@ -936,7 +937,59 @@ create table estoqueSaida(
  quantidadeSaida numeric(6,1),
 
 
+
 )
+
+go
+
+create view select_usuario as
+	 select * from usuario 
+go
+
+--////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////--
+--////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////--
+--////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////--
+			--views
+create view select_itens as
+	select A.idItens , A.descricao,A.valorUltimaCompra,B.descricao_marca ,  E.descricao"Categoria" from itens A left join  marcas B
+	on A.marca = B.idMarca
+	left join categoria E
+	on E.id_Categoria = B.categoria
+go
+
+
+
+
+create view itens_estoque_entrada as
+	select B.descricao , A.quantidade, C.numeroNota, A.valor_compra  from estoqueEntrada A left join itens B
+	on A.item = B.idItens
+	left join notasFiscais C
+	on A.notasFiscal = C.idNota
+
+	go
+
+
+
+
+
+
+
+
+
+
+--////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////--
+--////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////--
+--////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////--
+
+
+
+
+execute insert_categoria @descricao = 'Categoria Teste';
+insert into marcas(descricao_marca,categoria) values ('teste marca',1);
+insert into itens(descricao,valorUltimaCompra,marca) values('Teste Iten',1258.00, 1);
+insert into tabela_preco(idItens,preco,tebela) values(1,129.00,2);
+insert into tabela(descricaoTabela) values('tabela teste2');
+
 
 execute insert_Sexo @descricao= 'masculino'
 execute insert_Setor @descricao= 'Presidente' ;
