@@ -861,17 +861,38 @@ categoria int references  categoria(idCategoria),
 create table itens(
 idItens int IDENTITY(1,1) primary key,
 descricao varchar(1000),
-marcas int references marcas(idMarca),
+marca int references marcas(idMarca),
+valorUltimaCompra numeric(10,2),
 
 )
  /*-----------------------------------------------------------*/
+/*-----------------------------------------------------------*/
+create table tabela(
+idTabela int IDENTITY(1,1)primary key,
+descricaoTabela varchar(100)
+)
+
+
+ /*-----------------------------------------------------------*/
+/*-----------------------------------------------------------*/
+
+create table tabela_preco(
+idTabelaPreco int IDENTITY(1,1)primary key,
+tebela int references tabela(idTabela),
+idItens int references itens(idItens),
+preco numeric(10,2)
+)
+
+
+/*-----------------------------------------------------------*/
 /*-----------------------------------------------------------*/
 
 create table statusEstoque(
 idStatus int identity(1,1) primary key,
 descricao varchar(1000)
 )
---------------------------------------------------
+/*-----------------------------------------------------------*/
+/*-----------------------------------------------------------*/
 
 create table estoqueEntrada(
 idEstoqueEntrada int IDENTITY(1,1)primary key,
