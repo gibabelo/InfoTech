@@ -44,6 +44,8 @@ public class estoquePrincipal extends javax.swing.JInternalFrame {
         setMaximizable(true);
         setResizable(true);
 
+        jdEstoque.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+
         javax.swing.GroupLayout jdEstoqueLayout = new javax.swing.GroupLayout(jdEstoque);
         jdEstoque.setLayout(jdEstoqueLayout);
         jdEstoqueLayout.setHorizontalGroup(
@@ -69,7 +71,12 @@ public class estoquePrincipal extends javax.swing.JInternalFrame {
         btnCategorias.setText("Categorias");
         jMenu4.add(btnCategorias);
 
-        btnItens.setText("Itens");
+        btnItens.setText("Itens/Marcas");
+        btnItens.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                btnItensMousePressed(evt);
+            }
+        });
         jMenu4.add(btnItens);
 
         btnNotasFiscais.setText("Notas Fiscais");
@@ -102,6 +109,13 @@ public class estoquePrincipal extends javax.swing.JInternalFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnItensMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnItensMousePressed
+
+        frmItens frm = new frmItens();
+        jdEstoque.add(frm);
+        frm.setVisible(true);
+    }//GEN-LAST:event_btnItensMousePressed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
